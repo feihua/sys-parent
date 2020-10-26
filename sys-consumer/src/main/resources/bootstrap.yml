@@ -1,0 +1,31 @@
+server:
+  port: 9004 #启动端口 命令行注入
+
+nacos:
+  server:
+    addr: 127.0.0.1:8848
+
+spring:
+  application:
+    name: sys-consumer
+  main:
+    allow-bean-definition-overriding: true # Spring Boot 2.1 需要设定
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${nacos.server.addr}
+        namespace: 47ba6383-1d76-44d8-96fa-265b7c933a74
+        cluster-name: DEFAULT
+      config:
+        server-addr: ${nacos.server.addr} # 配置中心地址
+        file-extension: yaml
+        namespace: 47ba6383-1d76-44d8-96fa-265b7c933a74
+        group: SYS_GROUP
+        extension-configs:
+          - refresh: true
+            data-id: spring-boot-dubbo.yaml # spring boot dubbo配置
+            group: COMMON_GROUP # 通用配置组
+
+
+
+
