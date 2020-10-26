@@ -20,6 +20,7 @@
         <module>sys-provider</module>
         <module>sys-consumer</module>
         <module>sys-common</module>
+        <module>mybatis-generator</module>
     </modules>
 
 
