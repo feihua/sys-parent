@@ -1,5 +1,6 @@
 package com.liufeihua.sys.provider.service.iml;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -68,7 +69,7 @@ public class SysRoleResourcesServiceImpl implements SysRoleResourcesService {
 	 */
 	@Override
 	public Integer deleteById(Integer id) {
-		return roleResourcesMapper.deleteByPrimaryKey(id);
+		return roleResourcesMapper.deleteByRoleId(id);
 	}
 
 	/**
@@ -80,8 +81,24 @@ public class SysRoleResourcesServiceImpl implements SysRoleResourcesService {
 	 * @date: 2019/4/28 9:40
 	 */
 	@Override
-	public Integer updateById(SysRoleResources roleResources) {
-		return roleResourcesMapper.updateByPrimaryKeySelective(roleResources);
+	public Integer updateRoleResource(SysRoleResources roleResources) {
+
+		roleResourcesMapper.deleteByRoleId(roleResources.getRoleId());
+
+		for (Integer id : roleResources.getResourcesIds()) {
+
+			SysRoleResources resources = new SysRoleResources();
+			resources.setRoleId(roleResources.getRoleId());
+			resources.setResourcesId(id);
+			resources.setCreateTime(new Date());
+			resources.setCreateBy(1);
+			resources.setUpdateBy(0);
+			resources.setRemarks("测试");
+
+			roleResourcesMapper.insert(resources);
+		}
+
+		return 0;
 	}
 
 	/**
@@ -93,7 +110,17 @@ public class SysRoleResourcesServiceImpl implements SysRoleResourcesService {
 	 * @date: 2019/4/28 9:16
 	 */
 	@Override
-	public SysRoleResources findById(Integer id) {
-		return roleResourcesMapper.selectByPrimaryKey(id);
+	public List<Integer> findById(Integer id) {
+		List<SysRoleResources> sysRoleResources = roleResourcesMapper.selectByRoleId(id);
+
+		if (sysRoleResources.size() > 0) {
+			List<Integer> list = new ArrayList<>(sysRoleResources.size());
+			for (SysRoleResources roleResource : sysRoleResources) {
+				list.add(roleResource.getResourcesId());
+			}
+			return list;
+		}
+
+		return null;
 	}
 }

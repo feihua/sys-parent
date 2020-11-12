@@ -23,6 +23,8 @@ public class SysRoleResources implements Serializable {
 
 	private String remarks;
 
+	private Integer [] resourcesIds;
+
 	private static final long serialVersionUID = 1L;
 
 }

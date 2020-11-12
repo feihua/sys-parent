@@ -5,13 +5,13 @@ import java.util.List;
 import com.liufeihua.sys.api.bean.SysRoleResources;
 
 public interface SysRoleResourcesMapper {
-	int deleteByPrimaryKey(Integer id);
+	int deleteByRoleId(Integer id);
 
 	int insert(SysRoleResources record);
 
 	int insertSelective(SysRoleResources record);
 
-	SysRoleResources selectByPrimaryKey(Integer id);
+	List<SysRoleResources> selectByRoleId(Integer id);
 
 	int updateByPrimaryKeySelective(SysRoleResources record);
 

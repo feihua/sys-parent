@@ -5,9 +5,9 @@
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="user_id" jdbcType="INTEGER" property="userId"/>
         <result column="role_id" jdbcType="INTEGER" property="roleId"/>
-        <result column="create_time" jdbcType="DATE" property="createTime"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="create_by" jdbcType="INTEGER" property="createBy"/>
-        <result column="update_time" jdbcType="DATE" property="updateTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
         <result column="update_by" jdbcType="INTEGER" property="updateBy"/>
         <result column="remarks" jdbcType="VARCHAR" property="remarks"/>
     </resultMap>
@@ -20,16 +20,16 @@
         from sys_user_role
         where id = #{id,jdbcType=INTEGER}
     </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <delete id="deleteByUserId" parameterType="java.lang.Integer">
         delete from sys_user_role
-        where id = #{id,jdbcType=INTEGER}
+        where user_id = #{id,jdbcType=INTEGER}
     </delete>
     <insert id="insert" parameterType="com.liufeihua.sys.api.bean.SysUserRole">
         insert into sys_user_role (id, user_id, role_id,
         create_time, create_by, update_time,
         update_by, remarks)
         values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER},
-        #{createTime,jdbcType=DATE}, #{createBy,jdbcType=INTEGER}, #{updateTime,jdbcType=DATE},
+        #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP},
         #{updateBy,jdbcType=INTEGER}, #{remarks,jdbcType=VARCHAR})
     </insert>
     <insert id="insertSelective" parameterType="com.liufeihua.sys.api.bean.SysUserRole">
@@ -71,13 +71,13 @@
                 #{roleId,jdbcType=INTEGER},
             </if>
             <if test="createTime != null">
-                #{createTime,jdbcType=DATE},
+                #{createTime,jdbcType=TIMESTAMP},
             </if>
             <if test="createBy != null">
                 #{createBy,jdbcType=INTEGER},
             </if>
             <if test="updateTime != null">
-                #{updateTime,jdbcType=DATE},
+                #{updateTime,jdbcType=TIMESTAMP},
             </if>
             <if test="updateBy != null">
                 #{updateBy,jdbcType=INTEGER},
@@ -97,13 +97,13 @@
                 role_id = #{roleId,jdbcType=INTEGER},
             </if>
             <if test="createTime != null">
-                create_time = #{createTime,jdbcType=DATE},
+                create_time = #{createTime,jdbcType=TIMESTAMP},
             </if>
             <if test="createBy != null">
                 create_by = #{createBy,jdbcType=INTEGER},
             </if>
             <if test="updateTime != null">
-                update_time = #{updateTime,jdbcType=DATE},
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
             </if>
             <if test="updateBy != null">
                 update_by = #{updateBy,jdbcType=INTEGER},
@@ -118,9 +118,9 @@
         update sys_user_role
         set user_id = #{userId,jdbcType=INTEGER},
         role_id = #{roleId,jdbcType=INTEGER},
-        create_time = #{createTime,jdbcType=DATE},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
         create_by = #{createBy,jdbcType=INTEGER},
-        update_time = #{updateTime,jdbcType=DATE},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
         update_by = #{updateBy,jdbcType=INTEGER},
         remarks = #{remarks,jdbcType=VARCHAR}
         where id = #{id,jdbcType=INTEGER}

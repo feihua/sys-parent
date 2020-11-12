@@ -1,6 +1,7 @@
 server:
   port: 9004 #启动端口 命令行注入
-
+  servlet:
+    context-path: /api
 nacos:
   server:
     addr: 127.0.0.1:8848

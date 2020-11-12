@@ -59,5 +59,5 @@ public interface SysUserRoleService {
 	 * @author: 刘飞华
 	 * @date: 2019/5/6 9:40
 	 */
-	Integer updateById(SysUserRole userRole);
+	Integer updateUserRole(SysUserRole userRole);
 }

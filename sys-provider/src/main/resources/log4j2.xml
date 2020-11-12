@@ -47,7 +47,7 @@
         </logger>
         <logger name="com.alibaba.nacos" level="WARN">
         </logger>
-
+        <logger name="com.liufeihua.sys.provider.dao" level="TRACE" />
         <!--OFF   0-->
         <!--FATAL   100-->
         <!--ERROR   200-->

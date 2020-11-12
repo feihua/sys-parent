@@ -1,5 +1,7 @@
 package com.liufeihua.sys.api.service;
 
+import java.util.List;
+
 import com.liufeihua.sys.api.bean.SysRoleResources;
 import com.liufeihua.sys.common.page.PageBean;
 import com.liufeihua.sys.common.page.PageInfoVo;
@@ -28,7 +30,7 @@ public interface SysRoleResourcesService {
 	 * @author: 刘飞华
 	 * @date: 2019/5/6 9:16
 	 */
-	SysRoleResources findById(Integer id);
+	List<Integer> findById(Integer id);
 
 	/**
 	 * 添加角色资源
@@ -58,5 +60,5 @@ public interface SysRoleResourcesService {
 	 * @author: 刘飞华
 	 * @date: 2019/5/6 9:40
 	 */
-	Integer updateById(SysRoleResources user);
+	Integer updateRoleResource(SysRoleResources user);
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.liufeihua.sys.api.bean.SysResources;
 import com.liufeihua.sys.common.page.PageInfoVo;
 import com.liufeihua.sys.common.response.CommonRespData;
+import com.liufeihua.sys.common.response.ElementTreeTableVo;
 import com.liufeihua.sys.common.response.ElementTreeVo;
 import com.liufeihua.sys.consumer.service.ResourcesService;
 
@@ -41,7 +42,7 @@ public class SysResourcesController {
 	 * @date: 2019/5/6 9:12
 	 */
 	@PostMapping("/list")
-	public CommonRespData<PageInfoVo<ElementTreeVo>> list(@RequestBody SysResources resourcesVo) {
+	public CommonRespData<PageInfoVo<ElementTreeTableVo>> list(@RequestBody SysResources resourcesVo) {
 		return CommonRespData.success(resourcesService.list(resourcesVo));
 	}
 
@@ -66,7 +67,7 @@ public class SysResourcesController {
 	 * @author: 刘飞华
 	 * @date: 2019/5/6 9:12
 	 */
-	@DeleteMapping("/delete/{id}")
+	@GetMapping("/delete/{id}")
 	public CommonRespData<Integer> deleteById(@PathVariable("id") Integer id) {
 		return CommonRespData.success(resourcesService.deleteById(id));
 	}
@@ -79,7 +80,7 @@ public class SysResourcesController {
 	 * @author: 刘飞华
 	 * @date: 2019/5/6 9:12
 	 */
-	@PutMapping("/update")
+	@PostMapping("/update")
 	public CommonRespData<Integer> updateById(@RequestBody SysResources resources) {
 		return CommonRespData.success(resourcesService.updateById(resources));
 	}

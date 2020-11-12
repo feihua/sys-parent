@@ -2,6 +2,7 @@ package com.liufeihua.sys.consumer.service;
 
 import com.liufeihua.sys.api.bean.SysResources;
 import com.liufeihua.sys.common.page.PageInfoVo;
+import com.liufeihua.sys.common.response.ElementTreeTableVo;
 import com.liufeihua.sys.common.response.ElementTreeVo;
 
 /**
@@ -19,7 +20,7 @@ public interface ResourcesService {
 	 * @author: 刘飞华
 	 * @date: 2019/5/6 9:38
 	 */
-	PageInfoVo<ElementTreeVo> list(SysResources resourcesVo);
+	PageInfoVo<ElementTreeTableVo> list(SysResources resourcesVo);
 
 	/**
 	 * 根据id查询资源

@@ -12,7 +12,7 @@ import com.github.pagehelper.PageInfo;
 import com.liufeihua.sys.api.bean.SysResources;
 import com.liufeihua.sys.api.service.SysResourcesService;
 import com.liufeihua.sys.common.page.PageInfoVo;
-import com.liufeihua.sys.common.response.ElementTreeVo;
+import com.liufeihua.sys.common.response.ElementTreeTableVo;
 import com.liufeihua.sys.provider.dao.SysResourcesMapper;
 
 /**
@@ -36,34 +36,37 @@ public class SysResourcesServiceImpl implements SysResourcesService {
 	 * @date: 2019/5/6 9:38
 	 */
 	@Override
-	public PageInfoVo<ElementTreeVo> list(SysResources resourcesVo) {
+	public PageInfoVo<ElementTreeTableVo> list(SysResources resourcesVo) {
 
 		PageHelper.startPage(resourcesVo.getPageNum(), resourcesVo.getPageSize());
 		List<SysResources> list = resourcesMapper.list(resourcesVo);
 
 		//第一级菜单
-		List<ElementTreeVo> parentList = new ArrayList<>();
+		List<ElementTreeTableVo> parentList = new ArrayList<>();
 
 		for (SysResources sysResources : list) {
 			if (sysResources.getPid() == 0) {
 
-				parentList.add(ElementTreeVo.builder().id(sysResources.getId().intValue()).label(sysResources.getName())
-						.build());
+				parentList.add(ElementTreeTableVo.builder().id(sysResources.getId().intValue())
+						.name(sysResources.getName()).createBy(sysResources.getCreateBy())
+						.createTime(sysResources.getCreateTime()).remarks(sysResources.getRemarks()).build());
 			}
 		}
 
-		PageInfo<ElementTreeVo> info = new PageInfo<>(getChildren(list, parentList));
+		PageInfo<ElementTreeTableVo> info = new PageInfo<>(getChildren(list, parentList));
 		return new PageInfoVo<>(info.getList(), info.getTotal());
 	}
 
-	private List<ElementTreeVo> getChildren(List<SysResources> list, List<ElementTreeVo> parentList) {
-		for (ElementTreeVo treeVo : parentList) {
-			ArrayList<ElementTreeVo> children = new ArrayList<>();
+	private List<ElementTreeTableVo> getChildren(List<SysResources> list, List<ElementTreeTableVo> parentList) {
+		for (ElementTreeTableVo treeVo : parentList) {
+			ArrayList<ElementTreeTableVo> children = new ArrayList<>();
 			for (SysResources tbItemCat : list) {
 				if (treeVo.getId() == tbItemCat.getPid()) {
 
-					children.add(ElementTreeVo.builder().id(tbItemCat.getId().intValue()).label(tbItemCat.getName())
-							.build());
+					children.add(
+							ElementTreeTableVo.builder().id(tbItemCat.getId().intValue())
+									.name(tbItemCat.getName()).createBy(tbItemCat.getCreateBy())
+									.createTime(tbItemCat.getCreateTime()).remarks(tbItemCat.getRemarks()).build());
 				}
 				treeVo.setChildren(children);
 			}

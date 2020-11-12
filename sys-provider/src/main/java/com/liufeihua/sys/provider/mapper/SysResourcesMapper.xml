@@ -7,9 +7,9 @@
         <result column="url" jdbcType="VARCHAR" property="url"/>
         <result column="permission" jdbcType="VARCHAR" property="permission"/>
         <result column="pid" jdbcType="INTEGER" property="pid"/>
-        <result column="create_time" jdbcType="DATE" property="createTime"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="create_by" jdbcType="INTEGER" property="createBy"/>
-        <result column="update_time" jdbcType="DATE" property="updateTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
         <result column="update_by" jdbcType="INTEGER" property="updateBy"/>
         <result column="remarks" jdbcType="VARCHAR" property="remarks"/>
     </resultMap>
@@ -87,13 +87,13 @@
                 #{pid,jdbcType=INTEGER},
             </if>
             <if test="createTime != null">
-                #{createTime,jdbcType=DATE},
+                #{createTime,jdbcType=TIMESTAMP},
             </if>
             <if test="createBy != null">
                 #{createBy,jdbcType=INTEGER},
             </if>
             <if test="updateTime != null">
-                #{updateTime,jdbcType=DATE},
+                #{updateTime,jdbcType=TIMESTAMP},
             </if>
             <if test="updateBy != null">
                 #{updateBy,jdbcType=INTEGER},
@@ -119,13 +119,13 @@
                 pid = #{pid,jdbcType=INTEGER},
             </if>
             <if test="createTime != null">
-                create_time = #{createTime,jdbcType=DATE},
+                create_time = #{createTime,jdbcType=TIMESTAMP},
             </if>
             <if test="createBy != null">
                 create_by = #{createBy,jdbcType=INTEGER},
             </if>
             <if test="updateTime != null">
-                update_time = #{updateTime,jdbcType=DATE},
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
             </if>
             <if test="updateBy != null">
                 update_by = #{updateBy,jdbcType=INTEGER},
@@ -142,9 +142,9 @@
         url = #{url,jdbcType=VARCHAR},
         permission = #{permission,jdbcType=VARCHAR},
         pid = #{pid,jdbcType=INTEGER},
-        create_time = #{createTime,jdbcType=DATE},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
         create_by = #{createBy,jdbcType=INTEGER},
-        update_time = #{updateTime,jdbcType=DATE},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
         update_by = #{updateBy,jdbcType=INTEGER},
         remarks = #{remarks,jdbcType=VARCHAR}
         where id = #{id,jdbcType=INTEGER}

@@ -65,7 +65,7 @@ public class SysRoleController {
 	 * @author: 刘飞华
 	 * @date: 2019/5/6 9:12
 	 */
-	@DeleteMapping("/delete/{id}")
+	@GetMapping("/delete/{id}")
 	public CommonRespData<Integer> deleteById(@PathVariable("id") Integer id) {
 		return CommonRespData.success(roleService.deleteById(id));
 	}
@@ -78,7 +78,7 @@ public class SysRoleController {
 	 * @author: 刘飞华
 	 * @date: 2019/5/6 9:12
 	 */
-	@PutMapping("/update")
+	@PostMapping("/update")
 	public CommonRespData<Integer> updateById(@RequestBody SysRole role) {
 		return CommonRespData.success(roleService.updateById(role));
 	}

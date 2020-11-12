@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.liufeihua.sys.api.bean.SysResources;
 import com.liufeihua.sys.api.service.SysResourcesService;
 import com.liufeihua.sys.common.page.PageInfoVo;
+import com.liufeihua.sys.common.response.ElementTreeTableVo;
 import com.liufeihua.sys.common.response.ElementTreeVo;
 import com.liufeihua.sys.consumer.service.ResourcesService;
 
@@ -29,7 +30,7 @@ public class SysResourcesServiceImpl implements ResourcesService {
 	 * @date: 2019/5/6 9:38
 	 */
 	@Override
-	public PageInfoVo<ElementTreeVo> list(SysResources item) {
+	public PageInfoVo<ElementTreeTableVo> list(SysResources item) {
 
 		return resourcesService.list(item);
 	}

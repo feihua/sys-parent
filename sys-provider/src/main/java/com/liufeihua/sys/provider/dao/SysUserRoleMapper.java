@@ -5,7 +5,7 @@ import java.util.List;
 import com.liufeihua.sys.api.bean.SysUserRole;
 
 public interface SysUserRoleMapper {
-	int deleteByPrimaryKey(Integer id);
+	int deleteByUserId(Integer id);
 
 	int insert(SysUserRole record);
 

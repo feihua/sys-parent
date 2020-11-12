@@ -14,15 +14,15 @@
     <sql id="Base_Column_List">
         id, role_id, resources_id, create_time, create_by, update_time, update_by, remarks
     </sql>
-    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <select id="selectByRoleId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from sys_role_resources
-        where id = #{id,jdbcType=INTEGER}
+        where role_id = #{id,jdbcType=INTEGER}
     </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <delete id="deleteByRoleId" parameterType="java.lang.Integer">
         delete from sys_role_resources
-        where id = #{id,jdbcType=INTEGER}
+        where role_id = #{id,jdbcType=INTEGER}
     </delete>
     <insert id="insert" parameterType="com.liufeihua.sys.api.bean.SysRoleResources">
         insert into sys_role_resources (id, role_id, resources_id,

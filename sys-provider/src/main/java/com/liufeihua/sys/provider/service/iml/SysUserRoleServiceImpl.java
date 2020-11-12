@@ -69,7 +69,7 @@ public class SysUserRoleServiceImpl implements SysUserRoleService {
 	 */
 	@Override
 	public Integer deleteById(Integer id) {
-		return userRoleMapper.deleteByPrimaryKey(id);
+		return userRoleMapper.deleteByUserId(id);
 	}
 
 	/**
@@ -81,8 +81,13 @@ public class SysUserRoleServiceImpl implements SysUserRoleService {
 	 * @date: 2019/5/6 9:40
 	 */
 	@Override
-	public Integer updateById(SysUserRole userRole) {
-		return userRoleMapper.updateByPrimaryKeySelective(userRole);
+	public Integer updateUserRole(SysUserRole userRole) {
+		userRole.setCreateBy(1);
+		userRole.setCreateTime(new Date());
+//		先删除
+		userRoleMapper.deleteByUserId(userRole.getUserId());
+//		后添加
+		return userRoleMapper.insertSelective(userRole);
 	}
 
 	/**
